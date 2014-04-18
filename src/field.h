@@ -2,6 +2,7 @@
 #define FIELD_H
 
 #include "block.h"
+#include <ostream>
 
 class Piece;
 
@@ -13,6 +14,9 @@ private:
 
 public:
     Field();
+    ~Field();
+
+    void print(std::ostream& stream);
 };
 
 #endif // FIELD_H

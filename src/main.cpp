@@ -5,9 +5,8 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
-
     Field field;
+    field.print(cout);
     return 0;
 }
 

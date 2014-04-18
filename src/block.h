@@ -8,6 +8,8 @@ private:
 
 public:
     Block();
+
+    unsigned int get_color();
 };
 
 #endif // BLOCK_H

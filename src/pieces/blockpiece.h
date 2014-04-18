@@ -8,8 +8,14 @@ class BlockPiece : public Piece
 private:
     unsigned int _color;
 
+    // origin of the piece: the left upper corner
+    unsigned int _origin[2];
+
 public:
     BlockPiece();
+
+    void get_coordinates(unsigned int *coordinates);
+    unsigned int get_color();
 };
 
 #endif // BLOCKPIECE_H
