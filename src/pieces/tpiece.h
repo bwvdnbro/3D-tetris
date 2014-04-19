@@ -22,6 +22,7 @@ public:
 
     unsigned int get_color();
     void get_coordinates(unsigned int *coordinates);
+    void move(int x, int y);
 };
 
 #endif // TPIECE_H

@@ -16,6 +16,7 @@ public:
 
     void get_coordinates(unsigned int *coordinates);
     unsigned int get_color();
+    void move(int x, int y);
 };
 
 #endif // BLOCKPIECE_H

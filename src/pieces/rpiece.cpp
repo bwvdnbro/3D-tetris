@@ -3,7 +3,7 @@
 RPiece::RPiece()
 {
     _color = 6;
-    _origin[0] = 0;
+    _origin[0] = 4;
     _origin[1] = 0;
     _orientation = RPIECE_DOWN;
 }
@@ -57,4 +57,10 @@ void RPiece::get_coordinates(unsigned int *coordinates)
         coordinates[7] = _origin[1]+1;
         break;
     }
+}
+
+void RPiece::move(int x, int y)
+{
+    _origin[0] += x;
+    _origin[1] += y;
 }

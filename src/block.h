@@ -10,6 +10,7 @@ public:
     Block();
 
     unsigned int get_color();
+    void set_color(unsigned int color);
 };
 
 #endif // BLOCK_H

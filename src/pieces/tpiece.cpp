@@ -3,7 +3,7 @@
 TPiece::TPiece()
 {
     _color = 5;
-    _origin[0] = 0;
+    _origin[0] = 4;
     _origin[1] = 0;
     _orientation = TPIECE_UP;
 }
@@ -57,4 +57,10 @@ void TPiece::get_coordinates(unsigned int *coordinates)
         coordinates[7] = _origin[1]+1;
         break;
     }
+}
+
+void TPiece::move(int x, int y)
+{
+    _origin[0] += x;
+    _origin[1] += y;
 }

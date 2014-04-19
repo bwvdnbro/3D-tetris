@@ -3,7 +3,7 @@
 LPiece::LPiece()
 {
     _color = 7;
-    _origin[0] = 0;
+    _origin[0] = 3;
     _origin[1] = 0;
     _orientation = LPIECE_LONG_LEFT;
 }
@@ -57,4 +57,10 @@ void LPiece::get_coordinates(unsigned int *coordinates)
         coordinates[7] = _origin[1];
         break;
     }
+}
+
+void LPiece::move(int x, int y)
+{
+    _origin[0] += x;
+    _origin[1] += y;
 }

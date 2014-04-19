@@ -12,11 +12,16 @@ private:
     Block _colors[10][20];
     Piece* _piece;
 
+    bool is_valid();
+    void save_piece();
+
 public:
     Field();
     ~Field();
 
     void print(std::ostream& stream);
+    void move_piece();
+    void get_colors(unsigned int colors[][10]);
 };
 
 #endif // FIELD_H

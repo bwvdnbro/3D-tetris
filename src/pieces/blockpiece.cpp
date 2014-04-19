@@ -3,7 +3,7 @@
 BlockPiece::BlockPiece()
 {
     _color = 1;
-    _origin[0] = 0;
+    _origin[0] = 4;
     _origin[1] = 0;
 }
 
@@ -23,4 +23,10 @@ void BlockPiece::get_coordinates(unsigned int *coordinates)
     coordinates[5] = _origin[1];
     coordinates[6] = _origin[0]+1;
     coordinates[7] = _origin[1]+1;
+}
+
+void BlockPiece::move(int x, int y)
+{
+    _origin[0] += x;
+    _origin[1] += y;
 }
