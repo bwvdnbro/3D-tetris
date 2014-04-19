@@ -1,13 +1,11 @@
 #include "field.h"
 #include "piece.h"
-#include "pieces/lpiece.h"
-#include "pieces/longpiece.h"
 #include <iostream>
 #include <cstdlib>
 
 Field::Field()
 {
-    _piece = new LPiece();
+    _piece = _factory.get_random_piece();
 }
 
 Field::~Field(){
@@ -48,7 +46,7 @@ void Field::move_piece()
             _piece->move(0,-1);
             save_piece();
             delete _piece;
-            _piece = new LongPiece();
+            _piece = _factory.get_random_piece();
         }
     }
 }
@@ -97,5 +95,78 @@ void Field::save_piece()
         for(int i = 0; i < 4; i++){
             _colors[coordinates[2*i]][coordinates[2*i+1]].set_color(_piece->get_color());
         }
+    }
+    check_lines();
+}
+
+void Field::turn_piece()
+{
+    if(_piece){
+        _piece->turn();
+        if(!is_valid()){
+            _piece->turn(true);
+        }
+    }
+}
+
+void Field::drop_piece()
+{
+    if(_piece){
+        _piece->move(0,1);
+        while(is_valid()){
+            _piece->move(0,1);
+        }
+        _piece->move(0,-1);
+        save_piece();
+        delete _piece;
+        _piece = _factory.get_random_piece();
+    }
+}
+
+void Field::move_piece_left()
+{
+    if(_piece){
+        _piece->move(-1,0);
+        if(!is_valid()){
+            _piece->move(1,0);
+        }
+    }
+}
+
+void Field::move_piece_right()
+{
+    if(_piece){
+        _piece->move(1,0);
+        if(!is_valid()){
+            _piece->move(-1,0);
+        }
+    }
+}
+
+void Field::check_lines()
+{
+    for(unsigned int line = 19; line--;){
+        unsigned int column = 0;
+        while(column < 10 && _colors[column][line].get_color()){
+            column++;
+        }
+        if(column == 10){
+            remove_line(line);
+            // removing a line shifts all lines above one line down
+            line++;
+        }
+    }
+}
+
+void Field::remove_line(unsigned int line){
+    while(line){
+        for(int j = 0; j < 10; j++){
+            _colors[j][line].set_color(_colors[j][line-1].get_color());
+        }
+        line--;
+    }
+
+    for(int j = 0; j < 10; j++){
+        _colors[j][line].set_color(0);
     }
 }

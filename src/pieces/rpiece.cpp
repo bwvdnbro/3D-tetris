@@ -64,3 +64,26 @@ void RPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void RPiece::turn(bool turn_back)
+{
+    if(turn_back){
+        turn(false);
+        turn(false);
+    }
+
+    switch(_orientation){
+    case RPIECE_DOWN:
+        _orientation = RPIECE_GAMMA;
+        break;
+    case RPIECE_GAMMA:
+        _orientation = RPIECE_LONG_RIGHT;
+        break;
+    case RPIECE_LONG_RIGHT:
+        _orientation = RPIECE_SHORT_LEFT;
+        break;
+    case RPIECE_SHORT_LEFT:
+        _orientation = RPIECE_DOWN;
+        break;
+    }
+}

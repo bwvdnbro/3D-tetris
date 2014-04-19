@@ -41,3 +41,12 @@ void SPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void SPiece::turn(bool turn_back)
+{
+    if(_orientation == SPIECE_S){
+        _orientation = SPIECE_LIGHTNING;
+    } else {
+        _orientation = SPIECE_S;
+    }
+}

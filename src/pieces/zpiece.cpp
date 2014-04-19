@@ -41,3 +41,12 @@ void ZPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void ZPiece::turn(bool turn_back)
+{
+    if(_orientation == ZPIECE_Z){
+        _orientation = ZPIECE_LIGHTNING;
+    } else {
+        _orientation = ZPIECE_Z;
+    }
+}

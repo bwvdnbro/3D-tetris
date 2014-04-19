@@ -32,3 +32,12 @@ void LongPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void LongPiece::turn(bool turn_back)
+{
+    if(_orientation == LONGPIECE_FLAT){
+        _orientation = LONGPIECE_STRAIGHT;
+    } else {
+        _orientation = LONGPIECE_FLAT;
+    }
+}

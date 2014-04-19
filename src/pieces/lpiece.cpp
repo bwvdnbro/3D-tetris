@@ -64,3 +64,26 @@ void LPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void LPiece::turn(bool turn_back)
+{
+    if(turn_back){
+        turn(false);
+        turn(false);
+    }
+
+    switch(_orientation){
+    case LPIECE_L:
+        _orientation = LPIECE_LONG_LEFT;
+        break;
+    case LPIECE_LONG_LEFT:
+        _orientation = LPIECE_SHORT_LEFT;
+        break;
+    case LPIECE_SHORT_LEFT:
+        _orientation = LPIECE_DOWN;
+        break;
+    case LPIECE_DOWN:
+        _orientation = LPIECE_L;
+        break;
+    }
+}

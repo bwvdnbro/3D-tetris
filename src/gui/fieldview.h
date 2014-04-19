@@ -12,6 +12,9 @@ private:
     Field& _field;
     QColor _colors[8];
 
+protected:
+    void keyPressEvent(QKeyEvent *event);
+
 public:
     explicit FieldView(Field& field, QWidget *parent = 0);
 

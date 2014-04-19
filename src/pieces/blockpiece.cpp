@@ -30,3 +30,8 @@ void BlockPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void BlockPiece::turn(bool turn_back)
+{
+    // do nothing: a block does not change by turning it
+}

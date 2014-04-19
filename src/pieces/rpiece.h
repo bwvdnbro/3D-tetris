@@ -23,6 +23,7 @@ public:
     unsigned int get_color();
     void get_coordinates(unsigned int *coordinates);
     void move(int x, int y);
+    void turn(bool turn_back);
 };
 
 #endif // RPIECE_H

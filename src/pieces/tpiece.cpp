@@ -64,3 +64,26 @@ void TPiece::move(int x, int y)
     _origin[0] += x;
     _origin[1] += y;
 }
+
+void TPiece::turn(bool turn_back)
+{
+    if(turn_back){
+        turn(false);
+        turn(false);
+    }
+
+    switch(_orientation){
+    case TPIECE_T:
+        _orientation = TPIECE_RIGHT;
+        break;
+    case TPIECE_RIGHT:
+        _orientation = TPIECE_UP;
+        break;
+    case TPIECE_UP:
+        _orientation = TPIECE_LEFT;
+        break;
+    case TPIECE_LEFT:
+        _orientation = TPIECE_T;
+        break;
+    }
+}

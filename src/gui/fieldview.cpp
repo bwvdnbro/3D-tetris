@@ -2,19 +2,21 @@
 #include <iostream>
 #include <QPainter>
 #include <QColor>
+#include <QKeyEvent>
 
 FieldView::FieldView(Field& field, QWidget *parent) :
     _field(field),
     QWidget(parent)
 {
-    _colors[0] = QColor("black");
-    _colors[1] = QColor("cyan");
-    _colors[2] = QColor("red");
-    _colors[3] = QColor("green");
-    _colors[4] = QColor("blue");
-    _colors[5] = QColor("gray");
-    _colors[6] = QColor("yellow");
-    _colors[7] = QColor("magenta");
+    _colors[0] = QColor(Qt::black);
+    _colors[1] = QColor(Qt::cyan);
+    _colors[2] = QColor(Qt::red);
+    _colors[3] = QColor(Qt::green);
+    _colors[4] = QColor(Qt::blue);
+    _colors[5] = QColor(Qt::gray);
+    _colors[6] = QColor(Qt::yellow);
+    _colors[7] = QColor(Qt::magenta);
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 void FieldView::timer_handler()
@@ -26,6 +28,7 @@ void FieldView::timer_handler()
 void FieldView::paintEvent(QPaintEvent *paintevent)
 {
     QPainter painter(this);
+    painter.fillRect(0, 0, 300, 600, _colors[0]);
     unsigned int colors[20][10];
     _field.get_colors(colors);
     unsigned int origin[2] = {0,0};
@@ -33,9 +36,32 @@ void FieldView::paintEvent(QPaintEvent *paintevent)
     for(int i = 0; i < 20; i++){
         origin[0] = 0;
         for(int j = 0; j < 10; j++){
-            painter.fillRect(origin[0], origin[1], width[0], width[1], _colors[colors[i][j]]);
+            painter.fillRect(origin[0]+1, origin[1]+1, width[0]-2, width[1]-2, _colors[colors[i][j]]);
             origin[0] += width[0];
         }
         origin[1] += width[1];
     }
+}
+
+void FieldView::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key()){
+    case Qt::Key_Up:
+        _field.turn_piece();
+        break;
+    case Qt::Key_Down:
+        _field.drop_piece();
+        break;
+    case Qt::Key_Left:
+        _field.move_piece_left();
+        break;
+    case Qt::Key_Right:
+        _field.move_piece_right();
+        break;
+    default:
+        break;
+    }
+
+    QWidget::keyPressEvent(event);
+    update();
 }

@@ -22,4 +22,3 @@ int main(int argc, char **argv)
     timer.start(1000);
     return a.exec();
 }
-
