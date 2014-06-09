@@ -4,10 +4,11 @@
 #include <QColor>
 #include <QKeyEvent>
 
-FieldView3DProjection::FieldView3DProjection(Field3D& field, QWidget *parent) :
+FieldView3DProjection::FieldView3DProjection(Field3D& field, Projection3D projection, QWidget *parent) :
     _field(field),
     QWidget(parent)
 {
+    _projection = projection;
     _colors[0] = QColor(Qt::black);
     _colors[1] = QColor(Qt::cyan);
     _colors[2] = QColor(Qt::red);
@@ -33,10 +34,36 @@ void FieldView3DProjection::paintEvent(QPaintEvent *paintevent)
     _field.get_colors(colors);
     unsigned int origin[2] = {0,0};
     unsigned int width[2] = {30,30};
-    for(int i = 0; i < 20; i++){
+//    for(int i = 0; i < 20; i++){
+//        origin[0] = 0;
+//        for(int j = 0; j < 10; j++){
+//            painter.fillRect(origin[0]+1, origin[1]+1, width[0]-2, width[1]-2, _colors[colors[i][j][0]]);
+//            origin[0] += width[0];
+//        }
+//        origin[1] += width[1];
+//    }
+    int xstart, xstop, xincrease;
+    int ystart, ystop, yincrease;
+    int zstart, zstop, zincrease;
+    xstart = 0;
+    xstop = 20;
+    xincrease = 1;
+    ystart = 0;
+    ystop = 10;
+    yincrease = 1;
+    zstart = 0;
+    zstop = 10;
+    zincrease = 1;
+    for(int i = xstart; i != xstop; i+=xincrease){
         origin[0] = 0;
-        for(int j = 0; j < 10; j++){
-            painter.fillRect(origin[0]+1, origin[1]+1, width[0]-2, width[1]-2, _colors[colors[i][j][0]]);
+        for(int j = ystart; j != ystop; j+=yincrease){
+            unsigned int color = 0;
+            int k = zstart;
+            while(!color && k != zstop){
+                color = colors[i][j][k];
+                k += zincrease;
+            }
+            painter.fillRect(origin[0]+1, origin[1]+1, width[0]-2, width[1]-2, _colors[color]);
             origin[0] += width[0];
         }
         origin[1] += width[1];

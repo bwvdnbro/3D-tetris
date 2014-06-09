@@ -42,9 +42,9 @@ void Field3D::drop_piece()
             _piece->move(0,0,1);
         }
         _piece->move(0,0,-1);
-        //save_piece();
-        //delete _piece;
-        //_piece = _factory.get_random_piece();
+        save_piece();
+        delete _piece;
+        _piece = new BlockPiece3D();
     }
 }
 
