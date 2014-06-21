@@ -8,6 +8,7 @@ public:
     virtual void move(int x, int y, int z)=0;
     virtual void turn_x(bool turn_back = false)=0;
     virtual void turn_y(bool turn_back = false)=0;
+    virtual void turn_z(bool turn_back = false)=0;
 };
 
 #endif // PIECE3D_H

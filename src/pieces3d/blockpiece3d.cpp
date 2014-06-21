@@ -48,3 +48,8 @@ void BlockPiece3D::turn_y(bool turn_back)
 {
     // do nothing
 }
+
+void BlockPiece3D::turn_z(bool turn_back)
+{
+    // do nothing
+}

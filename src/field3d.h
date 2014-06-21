@@ -25,6 +25,7 @@ public:
 
     void turn_piece_x();
     void turn_piece_y();
+    void turn_piece_z();
     void drop_piece();
     void move_piece_left();
     void move_piece_right();

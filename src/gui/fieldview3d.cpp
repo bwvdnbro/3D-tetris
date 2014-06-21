@@ -69,22 +69,37 @@ void FieldView3D::timer_handler()
 
 void FieldView3D::keyPressEvent(QKeyEvent *event)
 {
-//    switch(event->key()){
-//    case Qt::Key_Up:
-//        _field.turn_piece();
-//        break;
-//    case Qt::Key_Down:
-//        _field.drop_piece();
-//        break;
-//    case Qt::Key_Left:
-//        _field.move_piece_left();
-//        break;
-//    case Qt::Key_Right:
-//        _field.move_piece_right();
-//        break;
-//    default:
-//        break;
-//    }
+    switch(event->key()){
+    case Qt::Key_Up:
+        _field.move_piece_back();
+        break;
+    case Qt::Key_Down:
+        _field.move_piece_front();
+        break;
+    case Qt::Key_Left:
+        _field.move_piece_left();
+        break;
+    case Qt::Key_Right:
+        _field.move_piece_right();
+        break;
+    case Qt::Key_Space:
+        _field.drop_piece();
+        break;
+    case Qt::Key_A:
+        _field.turn_piece_x();
+        break;
+    case Qt::Key_Q:
+        _field.turn_piece_x();
+        break;
+    case Qt::Key_D:
+        _field.turn_piece_y();
+        break;
+    case Qt::Key_S:
+        _field.turn_piece_z();
+        break;
+    default:
+        break;
+    }
 
     QWidget::keyPressEvent(event);
     update();

@@ -17,6 +17,7 @@ public:
     void move(int x, int y, int z);
     void turn_x(bool turn_back = false);
     void turn_y(bool turn_back = false);
+    void turn_z(bool turn_back = false);
 };
 
 #endif // BLOCKPIECE3D_H
